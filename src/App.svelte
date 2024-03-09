@@ -9,13 +9,13 @@
 </script>
 
 {#if activePage === this}
-  <main class="bg-[#D9D9D9]">
+  <main>
       <div class="flex h-screen">
         <div class="m-auto">
-            <h1 class="font-['Pixelify_Sans'] mt-24 text-9xl mb-11">PA<span class="ml-3 -mt-7 inline-block align-middle" id="pacman"></span>MAN</h1>
+            <h1 class="font-pixel mt-24 text-9xl mb-11">PA<span class="ml-3 -mt-7 inline-block align-middle" id="pacman"></span>MAN</h1>
             <div class="mt-32 flex justify-center">
-                <button class="font-['Pixelify_Sans'] mr-10 text-4xl text-white rounded-full bg-green-400 pl-3 pr-3" on:click={() => changePage(Install)}>INSTALL</button>
-                <button class="font-['Pixelify_Sans'] text-4xl text-white rounded-full bg-sky-400 pl-3 pr-3" on:click={() => changePage(Update)}>UPDATE</button>
+                <button class="font-pixel mr-10 text-4xl text-white rounded-full bg-green pl-3 pr-3" on:click={() => changePage(Install)}>INSTALL</button>
+                <button class="font-pixel text-4xl text-white rounded-full bg-sky-400 pl-3 pr-3" on:click={() => changePage(Update)}>UPDATE</button>
             </div>
         </div>
       </div>
