@@ -2,15 +2,14 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use std::process::{ Command, Stdio };
-use users::{ get_user_by_uid, get_current_uid };
+use users::get_current_uid;
 
 mod commands;
 use commands::args;
 
 fn main()
 {
-    let user = get_user_by_uid(get_current_uid()).unwrap();
-    let user = user.uid();
+    let user = get_current_uid();
 
     match user
     {
