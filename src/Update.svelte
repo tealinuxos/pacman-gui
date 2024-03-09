@@ -1,25 +1,70 @@
 <script>
     import Install from "./Install.svelte";
+    import { invoke } from "@tauri-apps/api/tauri";
 
     let activePage = this;
     let changePage = (page) =>{
         activePage = page;
     }
+
+    let isUpdating = false;
+    let isUpToDate = false;
+
+    const delay = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    const updatePackage = async () => {
+        isUpToDate = false;
+        isUpdating = true;
+        await delay(1000);
+        isUpdating = false;
+        // then
+        // if invoke('update') returns true
+        invoke("upgrade_packages").then((success) => {
+            if (success) {
+                isUpToDate = true;
+            }
+            else
+            {
+                console.log("update failed");
+                //todo
+            }
+        })
+
+        console.log("update done");
+    };
 </script>
 
 {#if activePage === this}
-    <main class="bg-[#D9D9D9]">
-        <nav class="fixed top-0 left-0 w-full bg-[#545454] p-6">
+    <main>
+        <nav class="fixed top-0 left-0 w-full bg-black p-6">
             <div class="text-center">
-                <button class="mr-10 text-3xl font-['Pixelify_Sans'] text-[#00BF63]" on:click={() => changePage(Install)}>INSTALL</button>
-                <button class="text-3xl font-['Pixelify_Sans'] text-[#0CC0DF] underline" on:click={() => changePage(this)}>UPDATE</button>
+                <button class="mr-10 text-3xl font-pixel text-green" on:click={() => changePage(Install)}>INSTALL</button>
+                <button class="text-3xl font-pixel text-cyan underline" on:click={() => changePage(this)}>UPDATE</button>
             </div>
         </nav>
         <div class="flex h-screen">
             <div class="m-auto">
-                <h1 class="text-4xl font-['Pixelify_Sans']">PRESS ICON TO UPDATE PACKAGE(S)</h1>
+                {#if !isUpdating}
+                    <h1 class="text-4xl font-pixel">PRESS ICON TO UPDATE PACKAGE(S)</h1>
+                {/if}
                 <div class="mt-20 flex justify-center">
-                    <button id="pacman"></button>
+                {#if isUpToDate}
+                    <div class="flex flex-col justify-center items-center">
+                        <button id="pacman-uptodate" on:click={updatePackage}></button>
+                        <span class="text-4xl font-pixel mt-16 text-green">PACKAGE(S) UP TO DATE</span>
+                    </div>
+                {:else if isUpdating}
+                    <div class="flex flex-col justify-center items-center">
+                        <button id="pacman-updating" on:click={updatePackage}></button>
+                        <span class="text-4xl font-pixel mt-16 text-black">UPDATING PACKAGE(S)</span>
+                    </div>
+                {:else}
+                    <div>
+                        <button id="pacman" on:click={updatePackage}></button>
+                    </div>
+                {/if}
                 </div>
             </div>
         </div>

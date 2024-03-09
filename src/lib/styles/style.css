@@ -13,6 +13,22 @@
     border-bottom-right-radius: 70px;
 }
 
+#pacman-updating {
+    width: 0;
+    height: 0;
+    border: 70px solid #545454;
+    border-right-color: transparent;
+    border-radius: 70px;
+}
+
+#pacman-uptodate {
+    width: 0;
+    height: 0;
+    border: 70px solid #00bf63;
+    border-right-color: transparent;
+    border-radius: 70px;
+}
+
 #search {
     box-sizing: border-box;
     position: relative;
