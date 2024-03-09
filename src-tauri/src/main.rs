@@ -44,5 +44,4 @@ fn installed(packages_name: Vec<String>) -> Vec<String>
     }
 
     result
->>>>>>> 025086b (Add backend)
 }
