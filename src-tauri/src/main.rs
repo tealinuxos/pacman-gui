@@ -1,12 +1,30 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+use std::process::{ Command, Stdio };
+use users::{ get_user_by_uid, get_current_uid };
+
+mod commands;
+use commands::args;
+
+fn main()
+{
+    let user = get_user_by_uid(get_current_uid()).unwrap();
+    let user = user.uid();
+
+    match user
+    {
+        0 => {
+            tauri::Builder::default()
+                .invoke_handler(tauri::generate_handler![args::install_package, args::search_package, args::upgrade_packages, installed])
+                .run(tauri::generate_context!())
+                .expect("error while running tauri application");
+        },
+        _ => println!("Run with sudo privilege!")
+    }
 }
 
+<<<<<<< HEAD
 use users::get_current_uid;
 
 fn main() {
@@ -20,4 +38,27 @@ fn main() {
     } else {
         println!("Kwe ora root jancok");
     }
+=======
+#[tauri::command]
+fn installed(packages_name: Vec<String>) -> Vec<String>
+{
+    let mut result = Vec::<String>::new();
+
+    for i in packages_name
+    {
+        let pacman = Command::new("pacman")
+            .arg("-Qq")
+            .arg(&i)
+            .stdout(Stdio::null())
+            .status()
+            .unwrap();
+
+        if pacman.success()
+        {
+            result.push(i);
+        }
+    }
+
+    result
+>>>>>>> 025086b (Add backend)
 }
