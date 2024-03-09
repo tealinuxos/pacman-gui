@@ -16,7 +16,11 @@ tauri-build = { version = "1.5", features = [] }
 tauri = { version = "1.5", features = ["shell-open"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+<<<<<<< HEAD
 users = "0.11"
+=======
+users = "0.11.0"
+>>>>>>> a53f479 (Add 'users' crate as a dependency)
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem
