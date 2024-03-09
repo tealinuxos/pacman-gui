@@ -23,21 +23,6 @@ fn main()
     }
 }
 
-<<<<<<< HEAD
-use users::get_current_uid;
-
-fn main() {
-    let user = get_current_uid();
-
-    if user == 0 {
-        tauri::Builder::default()
-            .invoke_handler(tauri::generate_handler![greet])
-            .run(tauri::generate_context!())
-            .expect("error while running tauri application");
-    } else {
-        println!("Kwe ora root jancok");
-    }
-=======
 #[tauri::command]
 fn installed(packages_name: Vec<String>) -> Vec<String>
 {
