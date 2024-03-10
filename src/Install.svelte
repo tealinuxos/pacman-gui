@@ -74,7 +74,7 @@
                             <div id="search"></div>
                         </button>
                     </form>
-                <div class="my-10 font-pixel">
+                <div class="my-10 pb-[60px] font-pixel">
                     {#if showResult}
                         <span class="flex justify-center text-2xl"></span>
                         {#each Object.entries(searchResult) as [key, value]}
