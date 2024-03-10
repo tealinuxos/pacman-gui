@@ -13,12 +13,13 @@
     let showResult = false;
     let searchResult;
     let installedPackages;
-    let selectedPackages;
+    let selectedPackages = [];
     let isInstalled = false;
     let showInstallModal = false;
     let installMessage = "SELECT PACKAGE(S)";
     let isInstalling = false;
     let isDone = false;
+    let isDisabled = false;
 
 
     let e;
@@ -37,12 +38,16 @@
     const installPackage = async () => {
 
         isInstalling = true;
+        isDisabled = true;
 
         for (const [id, name] of Object.entries(selectedPackages))
         {
             installMessage = "Installing " + name + " ...";
             await invoke("install_package", {packageName: name})
-                .then((response) => isInstalled = response);
+                .then((response) => {
+                    isInstalled = response;
+                    isDisabled = !response;
+                });
         }
 
         isInstalling = false;
@@ -64,8 +69,8 @@
             <div class="mt-24">
                 <h1 class="text-7xl font-pixel">TYPE PACKAGE</h1>
                     <form class="flex items-center mt-10 w-full h-full" on:submit|preventDefault={searchPackage}>
-                        <input bind:this={e} bind:value={packageName} type="text" name="package" class="border-4 border-black w-full p-2">
-                        <button class="ml-4">
+                        <input bind:this={e} bind:value={packageName} type="text" name="package" class="border-4 border-black w-full p-2" disabled={isDisabled}>
+                        <button class="ml-4" disabled={isDisabled}>
                             <div id="search"></div>
                         </button>
                     </form>
@@ -76,7 +81,7 @@
                             <div class="relative bg-white shadow-lg my-5 p-5 rounded-lg">
                                 <div class="flex justify-between items-center text-3xl rounded">
                                     <span>{value}</span>
-                                    <input type="checkbox" on:change={() => isDone = false} bind:group={selectedPackages} value={value} class="w-6 h-6 checked:w-8 checked:h-8" />
+                                    <input type="checkbox" on:change={() => isDone = false} bind:group={selectedPackages} value={value} class="w-6 h-6 checked:w-8 checked:h-8" disabled={isDisabled}>
                                 </div>
                                 {#if Object.values(installedPackages).includes(value)}
                                     <span class="text-green">Installed</span>

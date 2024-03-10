@@ -10,18 +10,12 @@
     let isUpdating = false;
     let isUpToDate = false;
 
-    const delay = (ms) => {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     const updatePackage = async () => {
+
         isUpToDate = false;
         isUpdating = true;
-        await delay(1000);
-        isUpdating = false;
-        // then
-        // if invoke('update') returns true
-        invoke("upgrade_packages").then((success) => {
+
+        await invoke("upgrade_packages").then((success) => {
             if (success) {
                 isUpToDate = true;
             }
@@ -32,6 +26,7 @@
             }
         })
 
+        isUpdating = false;
         console.log("update done");
     };
 </script>

@@ -1,7 +1,7 @@
 use std::process::{ Command, Stdio };
 use super::utils::split_by;
 
-pub fn pacman(args: String) -> bool
+pub async fn pacman(args: String) -> bool
 {
     let vec_args = split_by(args, ",");
 
@@ -17,7 +17,7 @@ pub fn pacman(args: String) -> bool
 }
 
 #[tauri::command]
-pub fn pacman_with_output(args: String) -> String
+pub async fn pacman_with_output(args: String) -> String
 {
     let vec_args = split_by(args, ",");
 
