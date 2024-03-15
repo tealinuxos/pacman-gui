@@ -74,11 +74,14 @@
                             <div id="search"></div>
                         </button>
                     </form>
+
+                    <hr class="fixed  left-0 w-full bg-black p-[2px] z-50 mt-6">
+
                 <div class="my-10 pb-[60px] font-pixel">
                     {#if showResult}
                         <span class="flex justify-center text-2xl"></span>
                         {#each Object.entries(searchResult) as [key, value]}
-                            <div class="relative bg-white shadow-lg my-5 p-5 rounded-lg">
+                            <div class="relative bg-white shadow-lg my-5 p-5 rounded-full">
                                 <div class="flex justify-between items-center text-3xl rounded">
                                     <span>{value}</span>
                                     <input type="checkbox" on:change={() => isDone = false} bind:group={selectedPackages} value={value} class="w-6 h-6 checked:w-8 checked:h-8" disabled={isDisabled}>
