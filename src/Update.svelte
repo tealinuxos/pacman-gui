@@ -52,7 +52,7 @@
                     </div>
                 {:else if isUpdating}
                     <div class="flex flex-col justify-center items-center">
-                        <button id="pacman-updating" on:click={updatePackage}></button>
+                        <button disabled={true} id="pacman-updating" on:click={updatePackage}></button>
                         <span class="text-4xl font-pixel mt-16 text-black">UPDATING PACKAGE(S)</span>
                     </div>
                 {:else}
