@@ -4,7 +4,7 @@
     export let installPackage;
     export let isInstalling = false;
     export let isTicked = false;
-    export let installMessage;
+    export let installMessage = "";
     export let isDone = false;
 </script>
 
