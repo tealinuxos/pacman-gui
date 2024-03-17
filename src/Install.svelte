@@ -1,4 +1,5 @@
 <script>
+
     import Update from "./Update.svelte";
     import InstallButton from "./InstallButton.svelte";
     import { invoke } from "@tauri-apps/api/tauri";
@@ -75,21 +76,21 @@
                         </button>
                     </form>
 
-                    <hr class="fixed  left-0 w-full bg-black p-[2px] z-50 mt-6">
+                    <hr class="absolute  left-0 w-full bg-black p-[2px] z-50 mt-6">
 
-                <div class="my-10 pb-[60px] font-pixel">
+                <div class="my-10 pb-[60px] font-pixel mt-[3rem]">
                     {#if showResult}
                         <span class="flex justify-center text-2xl"></span>
                         {#each Object.entries(searchResult) as [key, value]}
-                            <div class="relative bg-white shadow-lg my-5 p-5 rounded-full">
-                                <div class="flex justify-between items-center text-3xl rounded">
-                                    <span>{value}</span>
-                                    <input type="checkbox" on:change={() => isDone = false} bind:group={selectedPackages} value={value} class="w-6 h-6 checked:w-8 checked:h-8" disabled={isDisabled}>
-                                </div>
-                                {#if Object.values(installedPackages).includes(value)}
-                                    <span class="text-green">Installed</span>
-                                {/if}
+                        <div class="relative bg-white shadow-lg my-5 p-5 rounded-3xl">
+                            <div class="flex justify-between items-center text-3xl rounded">
+                                <span>{value}</span>
+                                <input type="checkbox" on:change={() => isDone = false} bind:group={selectedPackages} value={value} class="w-6 h-6 checked:w-8 checked:h-8" disabled={isDisabled}>
                             </div>
+                            {#if Object.values(installedPackages).includes(value)}
+                                <span class="text-green">Installed</span>
+                            {/if}
+                        </div>
                         {/each}
                     {/if}
                 </div>
