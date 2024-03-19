@@ -74,6 +74,13 @@
         isInstalling = false;
         isDone = true;
     }
+
+    const uninstallPackage = async (name) => {
+        console.log("clicked uninstall");
+        await invoke("uninstall_package", {packageName: name}).then((response) => console.log(response));
+        await invoke("installed", {packagesName: searchResult}).then((response) => installedPackages = response);
+    }
+
 </script>
 
 {#if activePage === this}
@@ -106,7 +113,7 @@
                             {#if Object.values(installedPackages).includes(value)}
                                 <div class="flex justify-between items-center text-3xl rounded relative">
                                     <span>{value}</span>
-                                    <button><i class="gg-remove"></i><button/> <!-- todo: bikin button uninstal -->
+                                    <button on:click={() => uninstallPackage(value)} value={value}><i class="gg-remove"></i><button/> <!-- todo: bikin button uninstal -->
                                 </div>
                                 <span class="text-green">Installed</span>
                             {:else}
