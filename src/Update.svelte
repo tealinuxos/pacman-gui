@@ -1,13 +1,14 @@
 <script>
     import Install from "./Install.svelte";
     import { invoke } from "@tauri-apps/api/tauri";
+    import LoadingBar from "./LoadingBar.svelte";
 
     let activePage = this;
     let changePage = (page) =>{
         activePage = page;
     }
 
-    let isUpdating = false;
+    let isUpdating = true;
     let isUpToDate = false;
 
     const updatePackage = async () => {
@@ -58,6 +59,8 @@
                             <div class="dot"></div>
                         </button>
                         <span class="text-4xl font-pixel mt-16 text-black">UPDATING PACKAGE(S)</span>
+                        <LoadingBar/>
+
                     </div>
                 {:else}
                 <!--  -->
