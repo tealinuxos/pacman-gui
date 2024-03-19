@@ -7,7 +7,7 @@
         activePage = page;
     }
 
-    let isUpdating = true;
+    let isUpdating = false;
     let isUpToDate = false;
 
     const updatePackage = async () => {
