@@ -67,12 +67,12 @@
                     isInstalled = response;
                     isDisabled = !response;
                 });
+
+            await invoke("installed", {packagesName: searchResult}).then((response) => installedPackages = response);
         }
 
         isInstalling = false;
         isDone = true;
-
-        await invoke("installed", {packagesName: searchResult}).then((response) => installedPackages = response);
     }
 </script>
 
