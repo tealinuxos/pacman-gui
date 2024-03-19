@@ -205,7 +205,6 @@
 }
 .checkbox-wrapper-24 input[type=checkbox]:checked + label span {
   background-color: green;
-  /*  */
   transform: scale(1.25);
 }
 .checkbox-wrapper-24 input[type=checkbox]:checked + label span:after {
@@ -219,9 +218,10 @@
   transition: width 150ms ease 100ms;
 }
 .checkbox-wrapper-24 input[type=checkbox]:checked + label:hover span {
-  background-color: #333;
-  transform: scale(1.25);
+  background-color: #50a575; /* Ubah warna latar belakang menjadi hijau */
+  transform: scale(1.25); /* Skala transformasi menjadi 1.25 */
 }
+
 .checkbox-wrapper-24 input[type=checkbox]:checked + label:hover span:after {
   width: 10px;
   background: #fff;
