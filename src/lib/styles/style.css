@@ -13,13 +13,13 @@
     border-bottom-right-radius: 70px;
 }
 
-#pacman-updating {
+/* #pacman-updating {
     width: 0;
     height: 0;
     border: 70px solid #545454;
     border-right-color: transparent;
     border-radius: 70px;
-}
+} */
 
 #pacman-uptodate {
     width: 0;
@@ -56,6 +56,82 @@
     top: 10px;
     left: 12px
 } 
+
+/* pacman update animation */
+
+.updatePacman {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.updatePacman {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pacman::before,
+.pacman::after{
+    content: " ";
+    position: absolute;
+    background: #545454;
+    width: 150px; 
+    height: 75px; 
+    margin-left: -75px; 
+    margin-top: -75px; 
+    border-radius: 75px 75px 0 0; 
+    animation: up 0.4s infinite;
+}
+
+.pacman::after{
+    margin-top: -2px; 
+    border-radius: 0 0 75px 75px; 
+    animation: down 0.4s infinite;
+}
+
+.dot {
+    position: absolute;
+    width: 22.5px; 
+    height: 22.5px; 
+    margin-top: -7.5px; 
+    margin-left: 45px; 
+    border-radius: 50%;
+    background: #545454;
+    box-shadow: 60px 0 0 #545454, 120px 0 0 #545454, 180px 0 0 #545454; 
+    animation: right_to_left 0.4s infinite;
+}
+
+@keyframes up{
+    0%, 100% {
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(-40deg);
+    }
+}
+
+@keyframes down{
+    0%, 100% {
+        transform: rotate(0);
+    }
+    50%{
+        transform: rotate(40deg);
+    }
+}
+
+@keyframes right_to_left {
+    100%{
+        margin-left: -9px; 
+    }
+}
+
 
 
 /* custom checkbox */
