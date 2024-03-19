@@ -104,9 +104,9 @@
                         {#each Object.entries(searchResult) as [key, value]}
                         <div class="relative bg-white shadow-lg my-5 p-5 rounded-3xl">
                             {#if Object.values(installedPackages).includes(value)}
-                                <div class="flex justify-between items-center text-3xl rounded">
+                                <div class="flex justify-between items-center text-3xl rounded relative">
                                     <span>{value}</span>
-                                    <button>unin<button/> <!-- todo: bikin button uninstal -->
+                                    <button><i class="gg-remove"></i><button/> <!-- todo: bikin button uninstal -->
                                 </div>
                                 <span class="text-green">Installed</span>
                             {:else}
