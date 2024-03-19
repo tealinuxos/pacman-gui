@@ -39,8 +39,9 @@
     border: 2px solid;
     border-radius: 100%;
     margin-left: -4px;
-    margin-top: -4px
+    margin-top: -4px;
 }
+
    
 #search::after {
     content: "";

@@ -88,9 +88,11 @@
             <div class="mt-24">
                 <h1 class="text-7xl font-pixel">TYPE PACKAGE</h1>
                     <form class="flex items-center mt-10 w-full h-full" on:submit|preventDefault={searchPackage}>
-                        <input bind:this={e} bind:value={packageName} type="text" placeholder="Type Something" name="package" class="border-4 border-black w-full p-2 placeholder:font-pixel text-xl" disabled={isDisabled}>
+                        <input bind:this={e} bind:value={packageName} type="text" placeholder="Type Something" name="package" class="border-4 border-black w-full p-2 placeholder:font-pixel text-xl font-pixel" disabled={isDisabled}>
                         <button class="ml-4" disabled={isDisabled}>
-                            <div id="search"></div>
+                            <div class="bg-gray rounded-full p-6 outline">
+                                <div id="search"></div>
+                            </div>
                         </button>
                     </form>
 
