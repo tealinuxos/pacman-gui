@@ -15,7 +15,7 @@ fn main()
     {
         0 => {
             tauri::Builder::default()
-                .invoke_handler(tauri::generate_handler![args::install_package, args::search_package, args::upgrade_packages, installed])
+                .invoke_handler(tauri::generate_handler![args::install_package, args::search_package, args::upgrade_system, installed])
                 .run(tauri::generate_context!())
                 .expect("error while running tauri application");
         },

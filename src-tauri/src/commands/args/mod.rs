@@ -22,7 +22,7 @@ pub async fn install_package(package_name: String) -> bool
 }
 
 #[tauri::command]
-pub async fn upgrade_packages() -> bool
+pub async fn upgrade_system() -> bool
 {
     let args = format!("-Syu,--noconfirm");
     let is_success = pacman(args);

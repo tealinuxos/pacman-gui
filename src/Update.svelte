@@ -15,7 +15,7 @@
         isUpToDate = false;
         isUpdating = true;
 
-        await invoke("upgrade_packages").then((success) => {
+        await invoke("upgrade_system").then((success) => {
             if (success) {
                 isUpToDate = true;
             }
