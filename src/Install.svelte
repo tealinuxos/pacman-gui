@@ -103,17 +103,22 @@
                         <span class="flex justify-center text-2xl"></span>
                         {#each Object.entries(searchResult) as [key, value]}
                         <div class="relative bg-white shadow-lg my-5 p-5 rounded-3xl">
-                            <div class="flex justify-between items-center text-3xl rounded">
-                                <span>{value}</span>
-                                <div class="checkbox-wrapper-24">
-                                    <input type="checkbox" id={"checkbox" + key} on:change={handleChange} bind:group={selectedPackages} value={value} disabled={isDisabled}/>
-                                    <label for={"checkbox" + key}>
-                                      <span></span>
-                                    </label>
-                                  </div>
-                            </div>
                             {#if Object.values(installedPackages).includes(value)}
+                                <div class="flex justify-between items-center text-3xl rounded">
+                                    <span>{value}</span>
+                                    <button>unin<button/> <!-- todo: bikin button uninstal -->
+                                </div>
                                 <span class="text-green">Installed</span>
+                            {:else}
+                                <div class="flex justify-between items-center text-3xl rounded">
+                                    <span>{value}</span>
+                                    <div class="checkbox-wrapper-24">
+                                        <input type="checkbox" id={"checkbox" + key} on:change={handleChange} bind:group={selectedPackages} value={value} disabled={isDisabled}/>
+                                        <label for={"checkbox" + key}>
+                                          <span></span>
+                                        </label>
+                                      </div>
+                                </div>
                             {/if}
                         </div>
                         {/each}
