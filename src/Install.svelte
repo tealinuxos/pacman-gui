@@ -4,6 +4,7 @@
     import InstallButton from "./InstallButton.svelte";
     import { invoke } from "@tauri-apps/api/tauri";
     import { onMount } from "svelte";
+    import SelectedPackagesStore from "./lib/stores/SelectedPackagesStore.js";
 
     let activePage = this;
     let changePage = (page) =>{
@@ -22,6 +23,23 @@
     let isDone = false;
     let isDisabled = false;
 
+    SelectedPackagesStore.subscribe((data) => {
+        selectedPackages = data;
+    });
+
+    const handleChange = (e) => {
+
+        isDone = false;
+        
+        SelectedPackagesStore.update((current) => {
+            if (e.target.checked) {
+                return [e.target.value, ...current];
+            }
+            else {
+                return current.filter((pkg) => pkg != e.target.value);
+            }
+        });
+    };
 
     let e;
 
@@ -86,14 +104,11 @@
                             <div class="flex justify-between items-center text-3xl rounded">
                                 <span>{value}</span>
                                 <div class="checkbox-wrapper-24">
-                                    
-                              
-                                    <input type="checkbox" id={key} name="check" on:change={() => isDone = false} bind:group={selectedPackages} value={value} disabled={isDisabled}/>
-                                    <label for={key}>
-                                      <span><!-- This span is needed to create the "checkbox" element --></span>
+                                    <input type="checkbox" id={"checkbox" + key} on:change={handleChange} bind:group={selectedPackages} value={value} disabled={isDisabled}/>
+                                    <label for={"checkbox" + key}>
+                                      <span></span>
                                     </label>
                                   </div>
-                                  <!-- <input type="checkbox" id="check-24" name="check"  on:change={() => isDone = false} bind:group={selectedPackages} value={value} class="w-6 h-6 rounded checked:w-8 checked:h-8 checked:rounded" disabled={isDisabled}> -->
                             </div>
                             {#if Object.values(installedPackages).includes(value)}
                                 <span class="text-green">Installed</span>
