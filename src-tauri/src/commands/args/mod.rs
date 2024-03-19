@@ -22,6 +22,15 @@ pub async fn install_package(package_name: String) -> bool
 }
 
 #[tauri::command]
+pub async fn uninstall_package(package_name: String) -> bool
+{
+    let args = format!("-Rns,--noconfirm,{}", package_name);
+    let is_success = pacman(args);
+
+    is_success.await
+}
+
+#[tauri::command]
 pub async fn upgrade_system() -> bool
 {
     let args = format!("-Syu,--noconfirm");
