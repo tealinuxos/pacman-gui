@@ -113,7 +113,7 @@
                             {#if Object.values(installedPackages).includes(value)}
                                 <div class="flex justify-between items-center text-3xl rounded relative">
                                     <span>{value}</span>
-                                    <button on:click={() => uninstallPackage(value)} value={value}><i class="gg-remove"></i><button/> <!-- todo: bikin button uninstal -->
+                                    <button on:click={() => uninstallPackage(value)} ><i class="gg-remove"></i><button/> <!-- todo: bikin button uninstal -->
                                 </div>
                                 <span class="text-green">Installed</span>
                             {:else}
