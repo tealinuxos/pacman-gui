@@ -162,7 +162,7 @@
   border: 2px solid #333;
   border-radius: 50%;
   vertical-align: middle;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
 }
 .checkbox-wrapper-24 label span:before {
@@ -292,10 +292,10 @@
   position: relative;
   display: block;
   transform: scale(var(--ggs,1));
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   border: 2px solid;
-  border-radius: 22px;
+  border-radius: 25px;
   position: absolute;
  }
  
@@ -304,11 +304,11 @@
   display: block;
   box-sizing: border-box;
   position: absolute;
-  width: 10px;
+  width: 13px;
   height: 2px;
   background: currentColor;
   border-radius: 5px;
-  top: 8px;
+  top: 10px;
   left: 4px
  } 
 

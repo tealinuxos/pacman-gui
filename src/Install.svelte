@@ -111,11 +111,13 @@
                         {#each Object.entries(searchResult) as [key, value]}
                         <div class="relative bg-white shadow-lg my-5 p-5 rounded-3xl">
                             {#if Object.values(installedPackages).includes(value)}
-                                <div class="flex justify-between items-center text-3xl rounded relative">
+                                <div class="flex justify-between items-center text-3xl rounded ">
                                     <span>{value}</span>
-                                    <button on:click={() => uninstallPackage(value)} ><i class="gg-remove"></i><button/> <!-- todo: bikin button uninstal -->
+                                    <button class="flex justify-center items-center mr-[13px]" on:click={() => uninstallPackage(value)}>
+                                        <i class="gg-remove"></i>
+                                    </button>
                                 </div>
-                                <span class="text-green">Installed</span>
+                                <!-- <span class="text-green">Installed</span> -->
                             {:else}
                                 <div class="flex justify-between items-center text-3xl rounded">
                                     <span>{value}</span>
@@ -124,7 +126,7 @@
                                         <label for={"checkbox" + key}>
                                           <span></span>
                                         </label>
-                                      </div>
+                                    </div>
                                 </div>
                             {/if}
                         </div>
